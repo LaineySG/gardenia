@@ -10,7 +10,7 @@ body {
     background-color: #abbeaf;
 }
 #bgimg {
-    background-image: url("kenrick-mills-RWsRztYTRec-unsplash.jpg");
+    background-image: url("../resource/kenrick-mills-RWsRztYTRec-unsplash.jpg");
     background-repeat:no-repeat;
     background-size:cover;
     height:100vh;
