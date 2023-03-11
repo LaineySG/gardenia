@@ -1,20 +1,25 @@
 * {
-    font-size: 1em;
+    font-size: 1.2em;
     padding: 0px;
     margin: 0px;
+}
+p {
+    font-size: 1.2em;
 }
 body {
     background-color: #abbeaf;
 }
-
 #bgimg {
     background-image: url("kenrick-mills-RWsRztYTRec-unsplash.jpg");
     background-repeat:no-repeat;
     background-size:cover;
     height:100vh;
-    -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0.1)));
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.25));
+    -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0.50)));
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.50));
     padding: 20px;
+}
+#mainbox {
+    margin-top: 50px;
 }
 .divbox, button {
     background: rgba(82, 165, 101, 0.253);
@@ -29,8 +34,49 @@ body {
 }
 button {
     padding: 8px;
+    margin: 8px;
+}
+label, select, input {
+    margin: 8px;
+    font-size: 1.2em;
 }
 h1 {
     font-size: 3em;
     margin-bottom: 15px;
+}h2 {
+    font-size: 2.7em;
+}h3 {
+    font-size: 2.4em;
+}h4 {
+    font-size: 2.1em;
+}h5 {
+    font-size: 1.8em;
+}h6 {
+    font-size: 1.5em;
 }
+#form {
+	display:none;
+    margin-top:15px;
+}
+legend {
+    margin-bottom:10px;
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {    
+    #mainbox {
+    margin-top: 125px;
+}}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    #mainbox {
+        margin-top: 200px;
+    }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
