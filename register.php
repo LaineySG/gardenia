@@ -1,20 +1,27 @@
+<?php require("register.class.php")?>
+<?php 
+if(isset($_POST['submit'])){
+    $user = new RegisterUser($_POST['username'], $_POST['password'], $_POST['hzone'], $_POST['firstfrost'], $_POST['lastfrost']);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preload" as="image" href="/resource/kenrick-mills-RWsRztYTRec-unsplash.jpg">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/style.css">
-    <title>Gardenia</title>
+    <title>Register</title>
 </head>
 <body>
 <div id="bgimg">
    <div class="divbox" id="mainbox">
-        <h1>Welcome to Gardenia.</h1>
-        <button id="getstartedbutton">Click here to get started.</button>
+        <p>"Welcome to Gardenia. To get started, we need some information from you to determine how best to create your personalized gardening calendar."</p>
         <div id="form">
-            <form name="getstarted" method="post" action=""> 
+            <form method="post" action="" autocomplete="off" enctype="multipart/form-data"> 
             <fieldset id="getstarted" name="Get Started">
             <label for="hzone">To begin with, please select your region's hardiness zone.</label><br>
             <select id="hzone" name="hzone">
@@ -51,16 +58,21 @@
             <input type="date" id="lastfrost" name="lastfrost"
                value="2023-04-29"
                min="2023-01-01" max="2023-12-31"><br>
-        
-               <label for="firstfrost">Finally, please enter the average date of first frost in your region.</label><br>
+               <label for="firstfrost">Please enter the average date of first frost in your region.</label><br>
                <input type="date" id="firstfrost" name="firstfrost"
                   value="2023-10-14"
                   min="2023-01-01" max="2023-12-31"><br>
-            <button type="continue" value="Continue">Continue</button>
+            <label for="username">Please enter a username.</label><br>
+            <input type="text" name="username"><br>
+            <label for="username">Please enter a password.</label><br>
+            <input type="text" name="password"><br>
+            <button type="submit" value="submit" name="submit">Create account</button><br>
+            <p class="error"><?php echo @$user->error ?></p>
+            <p class="success"><?php echo @$user->success ?></p>
             </form>
             </div>
+        <br><a href="login.php"><p class="logintext">Or click here to login.</p></a>
     </div>
 </div>
 </body>
 </html>
-<script src="script/index.ts"></script>
