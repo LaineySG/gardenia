@@ -79,7 +79,94 @@ function CalendarStartUp() {
     for (var i=0; i<plants.length; i++) {
         isShown[i] = false;
     }
+
+    eventslist = {
+        "monthly": [
+          
+        ]
+      }
+
+    for (var i = 0; i < plants.length; i++) {
+            //add all events
+            var hzone = Cookies.get('hardiness_zone');
+            ffrost = new Date(Cookies.get('first_frost'));
+            lfrost = new Date(Cookies.get('last_frost'));
+            let lateplantnumdays = plants[i].lateplantnumdays+1; // add 1 to fix result
+            let lateplantnumdaysfix = deltaDate(ffrost,lateplantnumdays,0,0);
+            let earlyplantindoorsnumdays = plants[i].earlyplantindoorsnumdays+1;
+            let earlyplantindoorsnumdaysfix = deltaDate(lfrost,earlyplantindoorsnumdays,0,0);
+            let earlyplantdirectnumdays = plants[i].earlyplantdirectnumdays+1;
+            let earlyplantdirectnumdaysfix = deltaDate(lfrost,earlyplantdirectnumdays,0,0);   
+
+
+            if (plants[i].earlyplantindoorsnumdays !== null) {
+                var tempEvent = {"id": "0",
+                "name": "",
+                "startdate": "2023-01-01",
+                "color": "#000"}  ;       
+                tempEvent.id = String(i);
+                tempEvent.name = "Can start " + plants[i].commonname + " indoors.";   
+                tempEvent.startdate = String(formatDate(earlyplantindoorsnumdaysfix));
+                tempEvent.color = "#634f09";
+                eventslist["monthly"].push(tempEvent);
+            }            
+            if (plants[i].earlyplantdirectnumdays !== null) {
+                var tempEvent = {"id": "0",
+                "name": "",
+                "startdate": "2023-01-01",
+                "color": "#000"}  ;      
+                tempEvent.id = String(i);
+                tempEvent.name = "Can plant " + plants[i].commonname + " outdoors."; 
+                tempEvent.startdate = String(formatDate(earlyplantdirectnumdaysfix));
+                tempEvent.color = "#455e44";  
+                eventslist["monthly"].push(tempEvent);
+            }            
+            if (plants[i].lateplantnumdays !== null) {
+                var tempEvent = {"id": "0",
+                "name": "",
+                "startdate": "2023-01-01",
+                "color": "#000"}  ;   
+                tempEvent.id = String(i);
+                tempEvent.name = "planting " + plants[i].commonname + " not recommended past this date.";     
+                tempEvent.startdate = String(formatDate(lateplantnumdaysfix));
+                tempEvent.color = "#692222";
+                eventslist["monthly"].push(tempEvent);
+            }
 }
+                //add first frost
+                var tempEvent = {"id": "",
+                "name": "",
+                "startdate": "2023-01-01",
+                "color": "#000"}  ;   
+                tempEvent.id = String(plants.length);
+                tempEvent.name = "First frost.";     
+                tempEvent.startdate = String(formatDate(ffrost));
+                tempEvent.color = "#284b6d";
+                eventslist["monthly"].push(tempEvent);
+                //add last frost
+                tempEvent.id = String(plants.length);
+                tempEvent.name = "Last frost.";     
+                tempEvent.startdate = String(formatDate(lfrost));
+                tempEvent.color = "#284b6d";
+                eventslist["monthly"].push(tempEvent);
+                //add compost date
+                tempEvent.id = String(plants.length);
+                tempEvent.name = "Apply compost (Or when soil is ready).";     
+                tempEvent.startdate = String(deltaDate(lfrost,-42,0,0));
+                tempEvent.color = "#284b6d";
+                eventslist["monthly"].push(tempEvent);
+
+
+}
+function hideAll(){
+    //hide all initially
+let x = document.querySelectorAll("[data-eventid]");
+console.log(x);
+            for (var i = 0; i < x.length; i++) {
+               x[i].style.display="none";
+            }
+}
+
 
 function formatDate(date) {
     var d = new Date(date),
@@ -127,6 +214,7 @@ function onCalendarInput() {
             "startdate": "2023-01-01",
             "enddate": "2023-01-01",
             "color": "#000"}
+
             if (plants[i].earlyplantindoorsnumdays !== null) {
                 tempEvent.id = String(i);
                 tempEvent.name = "Can start " + plants[i].commonname + " indoors.";   
@@ -139,7 +227,7 @@ function onCalendarInput() {
                 tempEvent.name = "Can plant " + plants[i].commonname + " outdoors."; 
                 tempEvent.startdate = String(formatDate(earlyplantdirectnumdaysfix));
                 tempEvent.enddate = String(formatDate(earlyplantdirectnumdaysfix));   
-                tempEvent.color = "#455e44";  
+                tempEvent.color = "#455e44"; 
             }            
             if (plants[i].lateplantnumdays !== null) {
                 tempEvent.id = String(i);
@@ -148,26 +236,5 @@ function onCalendarInput() {
                 tempEvent.enddate = String(formatDate(lateplantnumdaysfix));  
                 tempEvent.color = "#692222";
             }
-            console.log(tempEvent);
-
-            const fs = require("fs");
-            let eventsjson = fs.readFileSync("../Monthly-master/events.json", "utf-8");
-            let eventjsonlist = JSON.parse(eventsjson);
-            eventjsonlist.push(tempEvent);
-            eventsjson = JSON.stringify(eventjsonlist);
-            fs.writeFileSync("/Monthly-master/events.json", eventsjson, "utf-8")
-
-            //myCalendar.addEvent(tempEvent);
-            //re-load calendar w/ updated events
-
-          //  function name () {
-           //     $('#mycalendar').monthly({
-           //         mode: 'event',
-          //          dataType: 'json',
-           //         events: eventList
-           //     });
-           // };
-           // name();
-
             return;
         }}}

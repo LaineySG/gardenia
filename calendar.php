@@ -57,16 +57,19 @@ if(isset($_GET['logout'])){
 
 
 
-	$(window).load( function() {
-		var myCalendar = $('#mycalendar').monthly({
-			mode: 'event',
-			dataType: 'json',
-			jsonUrl: '/Monthly-master/events.json',
-			eventList: true
-		});
-	});
-</script>
 
+$(window).load( function() {
+    $('#mycalendar').monthly({
+        mode: 'event',
+        dataType: 'json',
+        events: eventslist
+    });
+    hideAll();
+});
+
+
+
+</script>
 </div>
 </div>
 
