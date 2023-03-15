@@ -1,7 +1,7 @@
 <?php require("register.class.php")?>
 <?php 
 if(isset($_POST['submit'])){
-    $user = new RegisterUser($_POST['username'], $_POST['password'], $_POST['hzone'], $_POST['firstfrost'], $_POST['lastfrost']);
+    $user = new RegisterUser($_POST['username'], $_POST['password'], $_POST['hzone'], $_POST['lastfrost'], $_POST['firstfrost']);
 }
 ?>
 

@@ -18,7 +18,12 @@ function deltaDate(input, days, months, years) {
       )
     );
 }
-
+function CalendarStartUp() {
+    isShown = [];
+    for (var i=0; i<plants.length; i++) {
+        isShown[i] = false;
+    }
+}
 function onInput() {
     var plantSelected = document.getElementById("plantselect");
     for (var i = 0; i < plants.length; i++) {
@@ -45,13 +50,6 @@ function onInput() {
             ffrost = new Date(Cookies.get('first_frost'));
             lfrost = new Date(Cookies.get('last_frost'));
 
-            //cd = new Date("2023-05-25");
-            if (ffrost < cd && cd < lfrost) {
-                document.getElementById("canbeplanted").innerHTML = "Yes."
-            } else {
-                document.getElementById("canbeplanted").innerHTML = "No."
-            }
-
             let lateplantnumdays = plants[i].lateplantnumdays+1; // add 1 to fix result
             let lateplantnumdaysfix = deltaDate(lfrost,lateplantnumdays,0,0);
             let earlyplantindoorsnumdays = plants[i].earlyplantindoorsnumdays+1;
@@ -67,7 +65,53 @@ function onInput() {
             if (plants[i].lateplantnumdays !== null) {
                 document.getElementById("lateplant").innerHTML = plants[i].lateplant + " (" + lateplantnumdaysfix.toDateString() + ")";
             }
+
+            //cd = new Date("2023-05-25");
+            //fix this
+            if (ffrost < cd && cd < lfrost) {
+                document.getElementById("canbeplanted").innerHTML = "Yes."
+            } else {
+                document.getElementById("canbeplanted").innerHTML = "No."
+            }
+
             return;
+
+        }
+    }
+}
+function onCalendarInput() {
+    var plantSelected = document.getElementById("plantselect");
+    for (var i = 0; i < plants.length; i++) {
+        if (plants[i].commonname == plantSelected.value && isShown[i] == false) {
+            isShown[i] = true;
+            //document.getElementById("commonname").innerHTML = plants[i].commonname;
+            var cd = new Date(); // current date
+            container = document.createElement("button");
+            container.onclick = function() {isShown[i] = false; this.style.display = "none";};
+            plantname = document.createTextNode("X " + plants[i].commonname);
+            container.appendChild(plantname);
+            document.getElementById("selectedplantlist").appendChild(container);
+            
+            var hzone = Cookies.get('hardiness_zone');
+            ffrost = new Date(Cookies.get('first_frost'));
+            lfrost = new Date(Cookies.get('last_frost'));
+            let lateplantnumdays = plants[i].lateplantnumdays+1; // add 1 to fix result
+            let lateplantnumdaysfix = deltaDate(lfrost,lateplantnumdays,0,0);
+            let earlyplantindoorsnumdays = plants[i].earlyplantindoorsnumdays+1;
+            let earlyplantindoorsnumdaysfix = deltaDate(ffrost,earlyplantindoorsnumdays,0,0);
+            let earlyplantdirectnumdays = plants[i].earlyplantdirectnumdays+1;
+            let earlyplantdirectnumdaysfix = deltaDate(ffrost,earlyplantdirectnumdays,0,0);
+            if (plants[i].earlyplantindoorsnumdays !== null) {
+                document.getElementById("earlyplantindoors").innerHTML = earlyplantindoorsnumdaysfix;
+            }            
+            if (plants[i].earlyplantdirectnumdays !== null) {
+                document.getElementById("earlyplantdirect").innerHTML = earlyplantdirectnumdaysfix;
+            }            
+            if (plants[i].lateplantnumdays !== null) {
+                document.getElementById("lateplant").innerHTML = lateplantnumdaysfix;
+            }
+            return;
+
         }
     }
 }

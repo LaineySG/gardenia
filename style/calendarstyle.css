@@ -1,3 +1,196 @@
 * {
-    border: 1px dashed red;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+body {
+    background-color: #abbeaf;
+    margin: 0;
+}
+.navtop div {
+    display: flex;
+    margin: 0 auto;
+    width: 800px;
+    height: 100%;
+}
+.navtop div h1, .navtop div a {
+    display: inline-flex;
+    align-items: center;
+}
+.navtop div a {
+    padding: 0 20px;
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+}
+.navtop div a i {
+    padding: 2px 8px 0 0;
+}
+.navtop div a:hover {
+    color: red;
+}
+.content {
+    width: 800px;
+    margin: 0 auto;
+}
+.content h2 {
+    margin: 0;
+    padding: 25px 0;
+    font-size: 22px;
+    border-bottom: 1px solid #ebebeb;
+    color: red;
+}
+.calendar {
+    display: flex;
+    flex-flow: column;
+}
+.calendar .header .month-year {
+    font-size: 20px;
+    font-weight: bold;
+    color:rgb(223, 223, 192);
+    padding: 20px 0;
+}
+.calendar .days {
+    display: flex;
+    flex-flow: wrap;
+}
+.calendar .days .day_name {
+    width: calc(100% / 7);
+    border-bottom: 1px solid #99d197;
+    border-left: 1px solid #99d197;
+    border-top: 1px solid #99d197;
+    padding: 20px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    color:rgb(223, 223, 192);
+    background-color:  #99d19785;
+}
+.calendar .days .day_name:nth-child(7) {
+    border-right: 1px solid #99d197;
+}
+.calendar .days .day_num {
+    display: flex;
+    flex-flow: column;
+    width: calc(100% / 7);
+    border-right: 1px solid #99d197;
+    border-bottom: 1px solid #99d197;
+    padding: 15px;
+    font-weight: bold;
+    color:rgb(223, 223, 192);
+    cursor: pointer;
+    min-height: 100px;
+}
+.calendar .days .day_num span {
+    display: inline-flex;
+    font-size: 14px;
+}
+.calendar .days .day_num .event {
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 3px 6px;
+    border-radius: 4px;
+    background-color: #634f09;
+    color: rgb(223, 223, 192);
+    word-wrap: break-word;
+}
+.calendar .days .day_num .event.green {
+    background-color: #455e44;
+}
+.calendar .days .day_num .event.blue {
+    background-color: #284b6d;
+}
+.calendar .days .day_num .event.red {
+    background-color: #692222;
+}
+.calendar .days .day_num:nth-child(7n+1) {
+    border-left: 1px solid  #99d197;
+}
+.calendar .days .day_num:hover {
+    background-color:  #99d19785;
+}
+.calendar .days .day_num.ignore {
+    background-color:  #8a806493;
+    color: rgb(156, 156, 131);
+    cursor: inherit;
+}
+.calendar .days .day_num.selected {
+    background-color:  #99d19785;
+    cursor: inherit;
+}
+.day_num, .ignore{
+    text-align:left;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+.tooltip .tooltiptext {
+    background-color: #cfad31;
+    visibility: hidden;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding:5px;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    right: 125%;
+}
+.tooltip .green {
+    background-color: #78e074;
+}
+.tooltip .blue {
+    background-color: #5887b6;
+}
+.tooltip .red {
+    background-color: #bb5757;
+}
+#calendarbtns{ /*Probably temp*/
+    text-align:left;
+}
+#calendarlookupform{
+    text-align:left;
+}
+#flexboxrow {
+    display: flex;
+    flex-direction:row;
+}
+
+@media only screen and (max-width: 992px) {
+    
+    .calendar .days .day_num {
+        flex-flow: column;
+        min-height: 50px;
+    }
+    .calendar .days .day_num .event {
+        font-size:0px;
+        border-radius:50%;
+        width: 10px;
+        margin-top: 2px;
+        padding: 8px;
+        background-color: #cfad31;
+    }
+    .calendar .days .day_num .event.green {
+        background-color: #78e074;
+    }
+    .calendar .days .day_num .event.blue {
+        background-color: #5887b6;
+    }
+    .calendar .days .day_num .event.red {
+        background-color: #bb5757;
+    }      
+      .tooltip:hover .tooltiptext {
+        visibility: visible;
+      }
+}
+@media only screen and (max-width: 500px) {
+    .calendar .days .day_name {
+        width: calc(100% / 7);
+        padding: 5px;
+    }
 }
