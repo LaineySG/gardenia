@@ -18,12 +18,6 @@ function deltaDate(input, days, months, years) {
       )
     );
 }
-function CalendarStartUp() {
-    isShown = [];
-    for (var i=0; i<plants.length; i++) {
-        isShown[i] = false;
-    }
-}
 function onInput() {
     var plantSelected = document.getElementById("plantselect");
     for (var i = 0; i < plants.length; i++) {
@@ -79,6 +73,29 @@ function onInput() {
         }
     }
 }
+
+function CalendarStartUp() {
+    isShown = [];
+    for (var i=0; i<plants.length; i++) {
+        isShown[i] = false;
+    }
+}
+
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+ 
+
 function onCalendarInput() {
     var plantSelected = document.getElementById("plantselect");
     for (var i = 0; i < plants.length; i++) {
@@ -88,10 +105,14 @@ function onCalendarInput() {
             var cd = new Date(); // current date
             container = document.createElement("button");
             container.onclick = function() {isShown[i] = false; this.style.display = "none";};
+            container.classList.add("smallbtn");
             plantname = document.createTextNode("X " + plants[i].commonname);
             container.appendChild(plantname);
-            document.getElementById("selectedplantlist").appendChild(container);
-            
+            document.getElementById("selectedItems").appendChild(container);
+            //add new events
+
+
+
             var hzone = Cookies.get('hardiness_zone');
             ffrost = new Date(Cookies.get('first_frost'));
             lfrost = new Date(Cookies.get('last_frost'));
@@ -101,17 +122,52 @@ function onCalendarInput() {
             let earlyplantindoorsnumdaysfix = deltaDate(ffrost,earlyplantindoorsnumdays,0,0);
             let earlyplantdirectnumdays = plants[i].earlyplantdirectnumdays+1;
             let earlyplantdirectnumdaysfix = deltaDate(ffrost,earlyplantdirectnumdays,0,0);
+            var tempEvent = {"id": "0",
+            "name": "",
+            "startdate": "2023-01-01",
+            "enddate": "2023-01-01",
+            "color": "#000"}
             if (plants[i].earlyplantindoorsnumdays !== null) {
-                document.getElementById("earlyplantindoors").innerHTML = earlyplantindoorsnumdaysfix;
+                tempEvent.id = String(i);
+                tempEvent.name = "Can start " + plants[i].commonname + " indoors.";   
+                tempEvent.startdate = String(formatDate(earlyplantindoorsnumdaysfix));
+                tempEvent.enddate = String(formatDate(earlyplantindoorsnumdaysfix));  
+                tempEvent.color = "#634f09";
             }            
-            if (plants[i].earlyplantdirectnumdays !== null) {
-                document.getElementById("earlyplantdirect").innerHTML = earlyplantdirectnumdaysfix;
+            if (plants[i].earlyplantdirectnumdays !== null) {   
+                tempEvent.id = String(i);
+                tempEvent.name = "Can plant " + plants[i].commonname + " outdoors."; 
+                tempEvent.startdate = String(formatDate(earlyplantdirectnumdaysfix));
+                tempEvent.enddate = String(formatDate(earlyplantdirectnumdaysfix));   
+                tempEvent.color = "#455e44";  
             }            
             if (plants[i].lateplantnumdays !== null) {
-                document.getElementById("lateplant").innerHTML = lateplantnumdaysfix;
+                tempEvent.id = String(i);
+                tempEvent.name = "planting " + plants[i].commonname + " not recommended past this date.";     
+                tempEvent.startdate = String(formatDate(lateplantnumdaysfix));
+                tempEvent.enddate = String(formatDate(lateplantnumdaysfix));  
+                tempEvent.color = "#692222";
             }
-            return;
+            console.log(tempEvent);
 
-        }
-    }
-}
+            const fs = require("fs");
+            let eventsjson = fs.readFileSync("../Monthly-master/events.json", "utf-8");
+            let eventjsonlist = JSON.parse(eventsjson);
+            eventjsonlist.push(tempEvent);
+            eventsjson = JSON.stringify(eventjsonlist);
+            fs.writeFileSync("/Monthly-master/events.json", eventsjson, "utf-8")
+
+            //myCalendar.addEvent(tempEvent);
+            //re-load calendar w/ updated events
+
+          //  function name () {
+           //     $('#mycalendar').monthly({
+           //         mode: 'event',
+          //          dataType: 'json',
+           //         events: eventList
+           //     });
+           // };
+           // name();
+
+            return;
+        }}}

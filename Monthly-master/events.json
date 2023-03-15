@@ -1,0 +1,30 @@
+{
+  "monthly": [
+    {
+      "id": 1,
+      "name": "Plant garlic",
+      "startdate": "2023-03-18",
+      "enddate": "2023-03-22",
+      "color": "#692222"
+      },
+      {
+      "id": 1,
+      "name": "Add compost",
+      "startdate": "2023-03-12",
+      "enddate": "2023-03-12",
+      "color": "#284b6d"
+      },{
+      "id": 1,
+      "name": "Start snakes indoors",
+      "startdate": "2023-03-18",
+      "enddate": "2023-03-22",
+      "color": "#634f09"
+      },{
+      "id": 1,
+      "name": "do the cabbage thing",
+      "startdate": "2023-03-04",
+      "enddate": "2023-04-22",
+      "color": "#455e44"
+      }
+  ]
+}

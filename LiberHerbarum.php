@@ -25,7 +25,7 @@ if(isset($_GET['logout'])){
 </head>
 <body onload="ListFiller(); onInput();">
 <div id="bgimg">  
-    <div class="divbox"> <div id="loggedintext">Logged in as <?php echo $_SESSION['user'];?>. <a href="?logout">Log out</a> <a href="Calendar.php"> - Go to calendar</a></div> 
+    <div class="divbox"> <div id="loggedintext">Logged in as <?php echo $_SESSION['user'];?>. <a href="?logout">Log out</a> <a href="calendar.php"> - Go to calendar</a></div> 
     <h1 id="title">Liber Herbarum</h1></div>
     <div id="flexbox">   
        <div class="divbox" id="lookup">

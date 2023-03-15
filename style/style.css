@@ -42,6 +42,11 @@ button {
     padding: 8px;
     margin: 8px;
 }
+.smallbtn {
+    font-size:0.9em;
+    padding:4px;
+    margin:4px;
+}
 label, select, input {
     margin: 8px;
     font-size: 1.2em;
@@ -86,6 +91,10 @@ em {
     display: flex;
     flex-direction:column;
 }
+#flexbox-row {
+    display:column;
+    flex-direction:row;
+}
 #lookup {
     flex-grow:1;
 }
@@ -114,6 +123,17 @@ b{
     font-size:1em;
     text-align:left;
 }
+#calendarlookupform{
+    flex-grow:1;
+    text-align:left;
+}
+#selectedItems{
+    flex-grow:3;
+}
+.left{
+    text-align:left;
+}
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {    
     #mainbox, #flexbox  {
@@ -131,6 +151,10 @@ b{
         max-height:80vh;
         border-radius: 15px;
         margin: 10px;
+    }
+    #flexbox-row {
+        display: flex;
+        flex-direction:row;
     }
 }
 /* Large devices (laptops/desktops, 992px and up) */
