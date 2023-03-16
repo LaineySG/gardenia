@@ -209,7 +209,6 @@ function onCalendarInput() { // On calendar plant selection, shows event if hidd
 function hideAll(){ // Hides all events unless "isShown" is true for that event. Also keeps compost and frost events shown.
     //hides all events initially
     let x = document.querySelectorAll("[data-eventid]");
-    console.log(eventslist);
     for (var i = 0; i < x.length; i++) {
         x[i].style.display="none";
     }

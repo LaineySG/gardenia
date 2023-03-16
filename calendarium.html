@@ -42,7 +42,7 @@
         <script type="text/javascript" src="Monthly-master/js/jquery.js"></script> <!--Needed for monthly.js-->
         <script type="text/javascript" src="Monthly-master/js/monthly.js"></script>
         <script> // Generates calendar in ID="mycalendar"
-            $(window).load( function() {
+            $(window).on('load', function() {
                 $('#mycalendar').monthly({
                     mode: 'event',
                     dataType: 'json',
