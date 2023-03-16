@@ -174,7 +174,7 @@ function submitregisterform() { // Creates cookies based on registration values,
         Cookies.set("last_frost", lfrost);
         Cookies.set("first_frost", ffrost);
         Cookies.set("hardiness_zone", hzone);
-        window.location.href = "LiberHerbarum.html";
+        window.location.href = "liberherbarum.html";
     }
 
 }
