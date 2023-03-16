@@ -1,67 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link priority={true} href="resource/kenrick-mills-RWsRztYTRec-unsplash.jpg">
+    <title>Calendarium</title> 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/style.css">
-	<script src="node_modules/js-cookie/dist/js.cookie.min.js"></script> <!-- Cookie get/set -->
-    <script type="text/javascript" src="data/plants.js"></script>
-    <script src="script/Liber.js"></script> 
-    <title>Calendar</title> 
-
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-
-	<link rel="stylesheet" href="Monthly-master/css/monthly.css">
-
+	<link rel="stylesheet" href="Monthly-master/css/monthly.css">   <!-- Calendar default CSS -->
+	<script src="node_modules/js-cookie/dist/js.cookie.min.js"></script>    <!-- Cookie get/set -->
+    <script type="text/javascript" src="data/plants.js"></script>   <!-- Plant data script (Used by liber.js) -->
+    <script src="script/Liber.js"></script>     <!-- Main JS Script -->
 </head>
-<body onload="ListFiller(); CalendarStartUp();">
+
+<body onload="ListFiller(); CalendarStartUp();"> 
+    <!--Runs ListFiller to populate the datalist, runs calendarstartup to generate the calendar and hide all events by default. Both in Liber.js-->
 <div id="bgimg">
-    <div class="divbox" id="titlediv"> <div id="loggedintext"><a href="LiberHerbarum.html">Go to Liber Herbarum</a></div> 
-    
-    <h1 id="title">Calendarium</h1></div>
-
-        <div class="divbox" id="mainbox">
-        <div id="flexbox-row">
-
-        <form id="calendarlookupform">
-            <label for="plantselect">Select Plant:</label>
-            <input list="lookupplants" id="plantselect" name="plantselect" size="15" autocomplete="off" oninput="onCalendarInput()" value="" onfocus="this.value=''" onchange="this.blur();" />
-            <datalist id="lookupplants">
-            </datalist><br>
-            <label for="showall">Show all on calendar:</label>
-            <input type="checkbox" id="showallbox" onclick="showAll()" >
-        </form>
-        <div id="selectedItems"></div>
+    <div class="divbox" id="titlediv"> 
+        <div id="loggedintext">
+            <a href="LiberHerbarum.html">Go to Liber Herbarum</a>
         </div> 
-
-    <div class="monthly" id="mycalendar"></div>
-<script type="text/javascript" src="Monthly-master/js/jquery.js"></script>
-<script type="text/javascript" src="Monthly-master/js/monthly.js"></script>
-<script type="text/javascript">
-
-/*red #692222 blue #284b6d green #455e44 yellow #634f09*/
-
-
-
-
-$(window).load( function() {
-    $('#mycalendar').monthly({
-        mode: 'event',
-        dataType: 'json',
-        events: eventslist
-    });
-    hideAll();
-});
-
-
-
-</script>
+        <h1 id="title">Calendarium</h1>
+    </div>
+    <div class="divbox" id="mainbox">
+        <div id="flexbox-row">
+            <form id="calendarlookupform">
+                <label for="plantselect">Select Plant:</label>
+                <input list="lookupplants" id="plantselect" name="plantselect" size="15" autocomplete="off" oninput="onCalendarInput()" value="" onfocus="this.value=''" onchange="this.blur();"/>
+                <datalist id="lookupplants"></datalist> <!--Autopopulates based on plants.js w/ ListFiller function from liber.js-->
+                <br>
+                <label for="showall">Show all on calendar:</label>
+                <input type="checkbox" id="showallbox" onclick="showAll()">
+            </form>
+            <div id="selectedItems">
+                <!--Autopopulates as items are selected, see onCalendarInput function.-->
+            </div> 
+        </div> 
+        <div class="monthly" id="mycalendar">
+            <!--Autopopulates with calendar. See Monthly-master.-->
+        </div>
+        <script type="text/javascript" src="Monthly-master/js/jquery.js"></script> <!--Needed for monthly.js-->
+        <script type="text/javascript" src="Monthly-master/js/monthly.js"></script>
+        <script> // Generates calendar in ID="mycalendar"
+            $(window).load( function() {
+                $('#mycalendar').monthly({
+                    mode: 'event',
+                    dataType: 'json',
+                    events: eventslist
+                });
+                hideAll();
+            });
+        </script>
+    </div>
 </div>
-</div>
-
-
 </body>
 </html>

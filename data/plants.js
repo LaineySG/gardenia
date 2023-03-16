@@ -19,9 +19,9 @@ var plants = [ // Plant data
     "lateplantnumdays": -50, // first frost date -50 days
     "lateplant": "50 days prior to first frost. (This is an estimate and could still result in frost damage. Many warm weather crops also won't do well approaching fall.)",
     "canplant": false, // set to true if currentdate is between earlyplant and lateplant dates.
-    "soil": "",
-    "description": "",
-    "rockfact": "",
+    "soil": "", //PH, quality, moisture etc.
+    "description": "", //general info
+    "rockfact": "", //fun fact: The term "rock fact" comes from the show 'Over the Garden Wall'. It also fits the gardening theme.
     "srcimage": "./resource/plants/erucavesicaria.jpg"
   },
   {

@@ -48,7 +48,7 @@ table {
 }
 a {
 	color: inherit; /* blue colors for links too */
-  }
-  a:hover{
+}
+a:hover {
     color:rgb(170, 170, 112);
-  }
+}
