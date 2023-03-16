@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="preload" as="image" href="resource/kenrick-mills-RWsRztYTRec-unsplash.jpg">
+    <link priority={true} href="resource/kenrick-mills-RWsRztYTRec-unsplash.jpg">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style/style.css">
     <title>Liber Herbarum</title> 
     <script src="node_modules/js-cookie/dist/js.cookie.min.js"></script> <!-- Cookie get/set -->
-    <script type="text/javascript" src="plants.js"></script>
+    <script type="text/javascript" src="data/plants.js"></script>
     <script src="script/Liber.js"></script>  
 </head>
 <body onload="ListFiller(); onInput();">
@@ -40,13 +40,13 @@
             <p class="infotext"><b>Earliest planting time (from Indoors): </b><span id="earlyplantindoors">6-8 weeks before last frost.</span></p>
             <p class="infotext"><b>Earliest planting time (Direct): </b><span id="earlyplantdirect">Last frost</span></p>
             <p class="infotext"><b>Latest planting time: </b><span id="lateplant">60 days prior to first frost.</span></p>
-            <p class="infotext"><b>Can be planted now in your area: </b><span id="canbeplanted"></span></p>
+            <p class="infotext"><b>Can be planted now (In or outdoors): </b><span id="canbeplanted"></span></p>
             <p class="infotext"><b>Time to Harvest (from seed): </b><span id="maturationtime">60 days.</span></p>
             <p class="infotext"><b>Soil Conditions: </b><span id="soil">moist, well-draining</span></p>
             <p class="infotext"><b>How to Harvest: </b><span id="howtoharvest">Harvest when ~6" tall, it will regrow. Cut leaves to within 1-2 inches of soil.</span></p>
             <p class="infotext"><b>Special Considerations: </b><span id="special"></span></p>
             <hr>
-            <p class="infotext"><span id="description">Attracts Butterflies. Full Sun. Cold Hardy Herb. Remove flowers after they bloom if you don't want seeds spread over your garden. Flowers are edible. If grown as a perennial, divide every 3-4 years.</p>
+            <p class="infotext"><span id="description">Attracts Butterflies. Full Sun. Cold Hardy Herb. Remove flowers after they bloom if you don't want seeds spread over your garden. Flowers are edible. If grown as a perennial, divide every 3-4 years.</span></p>
             <hr>
             <p class="infotext"><b>Rock fact: </b><span id="rockfact">Chives are the smallest member of the onion family.</span></p>
     </div>

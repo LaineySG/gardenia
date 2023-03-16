@@ -45,11 +45,11 @@ function onInput() {
             lfrost = new Date(Cookies.get('last_frost'));
 
             let lateplantnumdays = plants[i].lateplantnumdays+1; // add 1 to fix result
-            let lateplantnumdaysfix = deltaDate(lfrost,lateplantnumdays,0,0);
+            let lateplantnumdaysfix = deltaDate(ffrost,lateplantnumdays,0,0);
             let earlyplantindoorsnumdays = plants[i].earlyplantindoorsnumdays+1;
-            let earlyplantindoorsnumdaysfix = deltaDate(ffrost,earlyplantindoorsnumdays,0,0);
+            let earlyplantindoorsnumdaysfix = deltaDate(lfrost,earlyplantindoorsnumdays,0,0);
             let earlyplantdirectnumdays = plants[i].earlyplantdirectnumdays+1;
-            let earlyplantdirectnumdaysfix = deltaDate(ffrost,earlyplantdirectnumdays,0,0);
+            let earlyplantdirectnumdaysfix = deltaDate(lfrost,earlyplantdirectnumdays,0,0);
             if (plants[i].earlyplantindoorsnumdays !== null) {
                 document.getElementById("earlyplantindoors").innerHTML = plants[i].earlyplantindoors + " (" + earlyplantindoorsnumdaysfix.toDateString() + ")";
             } else { document.getElementById("earlyplantindoors").innerHTML =""}            
@@ -59,10 +59,8 @@ function onInput() {
             if (plants[i].lateplantnumdays !== null) {
                 document.getElementById("lateplant").innerHTML = plants[i].lateplant + " (" + lateplantnumdaysfix.toDateString() + ")";
             } else { document.getElementById("earlyplantindoors").innerHTML =""}    
-
-            //cd = new Date("2023-05-25");
-            //fix this
-            if (ffrost < cd && cd < lfrost) {
+            cd = new Date(); // current date
+            if ((cd > earlyplantindoorsnumdaysfix || cd > earlyplantdirectnumdaysfix) && (cd < lateplantnumdaysfix )) {
                 document.getElementById("canbeplanted").innerHTML = "Yes."
             } else {
                 document.getElementById("canbeplanted").innerHTML = "No."
