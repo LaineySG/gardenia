@@ -15,9 +15,7 @@
 <div id="bgimg">
    <div class="divbox" id="mainbox">
         <p>Welcome to Gardenia. To get started, we need some information from you to determine how best to create your personalized gardening calendar.</p>
-        <div id="form">
-            <!--Form to save hardiness zone, last+first frost dates as cookies to be retrieved in the plant lookup functions @ liber.js-->
-            <form autocomplete="off" enctype="multipart/form-data"> 
+        <div id="form">             
                 <fieldset id="getstarted" name="Get Started">
                 <label for="hzone">To begin with, please select your region's hardiness zone.</label><br>
                 <select id="hzone" name="hzone">
@@ -38,8 +36,8 @@
                 <br>
                 <input type="date" id="firstfrost" name="firstfrost"value="2023-10-14"min="2023-01-01" max="2023-12-31">
                 <br>
-                <!--Button submits form, saves cookies & goes to liberherbarium.html-->
-            </form><button value="submit" onclick="submitregisterform()" name="submit">Create account</button> 
+                <!--Button saves values as cookies & goes to liberherbarium.html-->
+                <button value="submit" onclick="submitregisterform();" name="submit">Create account</button> 
                 
         </div>
     </div>
