@@ -1,1 +1,1 @@
-include: ["node_modules/js-cookie/dist/"]
+include: ["node_modules/js-cookie/dist"]
