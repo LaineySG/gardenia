@@ -1,9 +1,0 @@
-[
-    {
-        "username": "admin",
-        "password": "$2y$10$Pvhf85jrsAIJOFgQwFYz0.aoTJZ9VQCTjDQSp0jRNoBicSgW7fFGe",
-        "hardiness_zone": "6a",
-        "last_frost": "2023-04-29",
-        "first_frost": "2023-10-14"
-    }
-]

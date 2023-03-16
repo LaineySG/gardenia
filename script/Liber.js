@@ -52,13 +52,13 @@ function onInput() {
             let earlyplantdirectnumdaysfix = deltaDate(ffrost,earlyplantdirectnumdays,0,0);
             if (plants[i].earlyplantindoorsnumdays !== null) {
                 document.getElementById("earlyplantindoors").innerHTML = plants[i].earlyplantindoors + " (" + earlyplantindoorsnumdaysfix.toDateString() + ")";
-            }            
+            } else { document.getElementById("earlyplantindoors").innerHTML =""}            
             if (plants[i].earlyplantdirectnumdays !== null) {
                 document.getElementById("earlyplantdirect").innerHTML = plants[i].earlyplantdirect + " (" + earlyplantdirectnumdaysfix.toDateString() + ")";
-            }            
+            } else { document.getElementById("earlyplantindoors").innerHTML =""}                
             if (plants[i].lateplantnumdays !== null) {
                 document.getElementById("lateplant").innerHTML = plants[i].lateplant + " (" + lateplantnumdaysfix.toDateString() + ")";
-            }
+            } else { document.getElementById("earlyplantindoors").innerHTML =""}    
 
             //cd = new Date("2023-05-25");
             //fix this
@@ -90,6 +90,7 @@ function CalendarStartUp() {
             //add all events
             var hzone = Cookies.get('hardiness_zone');
             ffrost = new Date(Cookies.get('first_frost'));
+            console.log(ffrost);
             lfrost = new Date(Cookies.get('last_frost'));
             let lateplantnumdays = plants[i].lateplantnumdays+1; // add 1 to fix result
             let lateplantnumdaysfix = deltaDate(ffrost,lateplantnumdays,0,0);
@@ -134,38 +135,30 @@ function CalendarStartUp() {
             }
 }
                 //add first frost
-                var tempEvent = {"id": "",
-                "name": "",
-                "startdate": "2023-01-01",
-                "color": "#000"}  ;   
-                tempEvent.id = String(plants.length);
+                var tempEvent = {}  ;   
+                tempEvent.id = String(-1);
                 tempEvent.name = "First frost.";     
                 tempEvent.startdate = String(formatDate(ffrost));
                 tempEvent.color = "#284b6d";
                 eventslist["monthly"].push(tempEvent);
                 //add last frost
-                tempEvent.id = String(plants.length);
+                var tempEvent = {}  ;   
+                tempEvent.id = String(-1);
                 tempEvent.name = "Last frost.";     
                 tempEvent.startdate = String(formatDate(lfrost));
                 tempEvent.color = "#284b6d";
                 eventslist["monthly"].push(tempEvent);
                 //add compost date
-                tempEvent.id = String(plants.length);
+                var tempEvent = {}  ;   
+                tempEvent.id = String(-1);
                 tempEvent.name = "Apply compost (Or when soil is ready).";     
-                tempEvent.startdate = String(deltaDate(lfrost,-42,0,0));
+                tempEvent.startdate = String(formatDate(deltaDate(lfrost,-42,0,0)));
                 tempEvent.color = "#284b6d";
                 eventslist["monthly"].push(tempEvent);
 
 
 }
-function hideAll(){
-    //hide all initially
-let x = document.querySelectorAll("[data-eventid]");
-console.log(x);
-            for (var i = 0; i < x.length; i++) {
-               x[i].style.display="none";
-            }
-}
+
 
 
 function formatDate(date) {
@@ -182,16 +175,37 @@ function formatDate(date) {
     return [year, month, day].join('-');
 }
  
+function submitregisterform() {
+    var lfrost = document.getElementById("lastfrost").value;
+    var ffrost = document.getElementById("firstfrost").value;
+    var hzone = document.getElementById("hzone").value;
+    console.log(lfrost,ffrost,hzone);
+    if (lfrost !== null && ffrost !== null && hzone !== null) {
+    Cookies.set("last_frost", lfrost,  { expires: 7 });
+    Cookies.set("first_frost", ffrost,  { expires: 7 });
+    Cookies.set("hardiness_zone", hzone,  { expires: 7 });
+    window.location.href = "LiberHerbarum.html";
+    }
+
+}
 
 function onCalendarInput() {
     var plantSelected = document.getElementById("plantselect");
     for (var i = 0; i < plants.length; i++) {
         if (plants[i].commonname == plantSelected.value && isShown[i] == false) {
             isShown[i] = true;
+            console.log(i);
+
+            let z = document.querySelectorAll(`[data-eventid="${i}"]`);
+            for (var j = 0; j<z.length; j++) {
+                z[j].style.display="block";
+            }
+                
+            
             //document.getElementById("commonname").innerHTML = plants[i].commonname;
             var cd = new Date(); // current date
             container = document.createElement("button");
-            container.onclick = function() {isShown[i] = false; this.style.display = "none";};
+            container.onclick = function() {isShown[i] = false; this.style.display = "none"; hideAll();};
             container.classList.add("smallbtn");
             plantname = document.createTextNode("X " + plants[i].commonname);
             container.appendChild(plantname);
@@ -238,3 +252,48 @@ function onCalendarInput() {
             }
             return;
         }}}
+
+function hideAll(){
+    //hide all initially
+    let x = document.querySelectorAll("[data-eventid]");
+    console.log(eventslist);
+    for (var i = 0; i < x.length; i++) {
+        x[i].style.display="none";
+    }
+
+
+    for (var i = 0; i < plants.length; i++) {
+        let z = document.querySelectorAll(`[data-eventid="${i}"]`);
+        if (isShown[i]) { // if it's meant to be shown
+            for (var j = 0; j<z.length; j++) {
+                z[j].style.display="block";
+            }
+        }
+    }
+
+    //unhide compost/lfrost/ffrost
+    let y = document.querySelectorAll("[data-eventid='-1']")
+    for (var i = 0; i<y.length; i++) {
+        y[i].style.display="block";
+    }
+}
+function showAll(){
+    var check_if_checked = document.getElementById('showallbox');
+    if(check_if_checked.checked){
+        for (var i = 0; i < plants.length; i++) {
+            isShown[i] = true;
+    }
+    hideAll(); 
+} else {
+    for (var i = 0; i < plants.length; i++) {
+        isShown[i] = false;
+}
+hideAll();
+
+var button_elements = document.getElementsByClassName("smallbtn")
+for (var i=0; i < button_elements.length; i++) {
+    button_elements[i].style.display="none";
+}
+
+}
+}

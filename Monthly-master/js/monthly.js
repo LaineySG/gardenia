@@ -173,6 +173,7 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			for(index = 0; index < divs.length; index += 7) {
 				divs.slice(index, index + 7).wrapAll('<div class="monthly-week"></div>');
 			}
+			hideAll();
 		}
 
 		function addEvent(event, setMonth, setYear) {

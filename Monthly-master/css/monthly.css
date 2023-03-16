@@ -297,7 +297,7 @@
 .monthly-list-item {
 	position: relative;
 	background-color:#253124b9;
-	padding: 0.5em 0.7em 1em 4em;
+	padding: 0.5em 0.7em 3em 4em;
 	display: none;
 	border-top: 1px solid #43614893;
 	text-align: left;
@@ -379,7 +379,6 @@
 
 body {
     background-color:  #99d19785;
-	padding: 0em 1em;
 }
 #mycalendar {
 	width: 100%;
