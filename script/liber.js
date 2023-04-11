@@ -103,12 +103,14 @@ function CalendarStartUp() { //On startup, add all events.
         let earlyplantdirectnumdaysdelta = deltaDate(lfrost,earlyplantdirectnumdays,0,0);   
         //Gets the new dates based on the integer difference from first and last frost date for plantings.
 
+        //Media check to change color of events for mobile users
+        var x = window.matchMedia("(max-width: 400px)")
         if (plants[i].earlyplantindoorsnumdays !== null) { // If data exists for date to plant, create & push event
             var tempEvent = {"id": "0", "name": "", "startdate": "2023-01-01", "color": "#000"};       
             tempEvent.id = String(i);
             tempEvent.name = "Can start " + plants[i].commonname + " indoors.";   
             tempEvent.startdate = String(formatDate(earlyplantindoorsnumdaysdelta));
-            tempEvent.color = "#634f09";
+            if (x.matches) {tempEvent.color = "#debd4b";} else {tempEvent.color = "#634f09";} // Shows lighter color for mobile users
             eventslist["monthly"].push(tempEvent);
         }            
         if (plants[i].earlyplantdirectnumdays !== null) { // If data exists for date to plant, create & push event
@@ -116,7 +118,7 @@ function CalendarStartUp() { //On startup, add all events.
             tempEvent.id = String(i);
             tempEvent.name = "Can plant " + plants[i].commonname + " outdoors."; 
             tempEvent.startdate = String(formatDate(earlyplantdirectnumdaysdelta));
-            tempEvent.color = "#455e44";  
+            if (x.matches) {tempEvent.color = "#8fc78d";} else {tempEvent.color = "#455e44";}
             eventslist["monthly"].push(tempEvent);
         }            
         if (plants[i].lateplantnumdays !== null) { // If data exists for date to plant, create & push event
@@ -124,7 +126,7 @@ function CalendarStartUp() { //On startup, add all events.
             tempEvent.id = String(i);
             tempEvent.name = "Planting " + plants[i].commonname + " not recommended past this date.";     
             tempEvent.startdate = String(formatDate(lateplantnumdaysdelta));
-            tempEvent.color = "#692222";
+            if (x.matches) {tempEvent.color = "#d13f3f";} else {tempEvent.color = "#692222";}
             eventslist["monthly"].push(tempEvent);
         }
     }
