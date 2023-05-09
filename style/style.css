@@ -137,7 +137,6 @@ b{
 .left{
 	text-align:left;
 }
-
 /*tooltip for descriptions in register page and if needed for later*/
 .tooltip-top {
 	position: relative;
@@ -164,9 +163,6 @@ b{
 	visibility: visible;
 	opacity: 1;
   }
-
-
-
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
 	#mainbox, #flexbox {

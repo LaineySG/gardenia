@@ -441,3 +441,9 @@ establish the rules based on the calendar element width rather than the device w
 .sortable-handler {
 	touch-action: none;
   }
+
+  @media only screen and (max-width: 400px) {
+	.monthly-event-list .listed-event {
+		color:black;
+	}
+}
