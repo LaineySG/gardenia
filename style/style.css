@@ -137,6 +137,36 @@ b{
 .left{
 	text-align:left;
 }
+
+/*tooltip for descriptions in register page and if needed for later*/
+.tooltip-top {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dashed rgb(223, 223, 192);
+  }
+.tooltip-top .tooltip-text {
+	visibility: hidden;
+	width: 360px;
+	background-color: rgba(73, 138, 88, 0.95);
+	padding: 15px;
+	color:rgb(223, 223, 192);
+	text-align: center;
+	border-radius: 6px;
+	position: absolute;
+	z-index: 1;
+	bottom: 125%;
+	left: 50%;
+	margin-left: -60px;
+	opacity: 0;
+	transition: opacity 0.3s;
+  }
+.tooltip-top:hover .tooltip-text {
+	visibility: visible;
+	opacity: 1;
+  }
+
+
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
 	#mainbox, #flexbox {
