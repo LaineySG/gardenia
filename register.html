@@ -17,7 +17,8 @@
         <p>Welcome to Gardenia. To get started, we need some information from you to determine how best to create your personalized gardening calendar.</p>
         <div id="form">             
                 <fieldset id="getstarted" name="Get Started">
-                <label for="hzone">To begin with, please select your region's hardiness zone.</label><br>
+                <label for="hzone">To begin with, please select your region's <span class="tooltip-top" style="color:rgb(154, 221, 53)">hardiness zone.<span class="tooltip-text">A region's hardiness zone is a geographic region with certain average annual minimum temperatures. It is particularly important for
+                    determining whether or not a plant will be a perennial in a given area.</span></span></label><br>
                 <select id="hzone" name="hzone">
                     <option value="0a">0a</option><option value="0b">0b</option><option value="1a">1a</option><option value="1b">1b</option>
                     <option value="2a">2a</option><option value="2b">2b</option><option value="3a">3a</option><option value="3b">3b</option>
@@ -28,11 +29,17 @@
                     <option value="12a">12a</option><option value="12b">12b</option><option value="13a">13a</option><option value="13b">13b</option>
                 </select>
                 <br>
-                <label for="lastfrost">Next, please enter the average date of last frost in your region.</label>
+                <label for="lastfrost">Next, please enter the average date of <span class="tooltip-top" style="color:rgb(154, 221, 53)">last frost<span class="tooltip-text">The last frost
+                    date in an area is the latest date in a year where frost is generally expected. It is often an average and is not guaranteed, but it is very important for plant growth as most
+                    plants can't withstand frost.
+                </span></span> in your region.</label>
                 <br>
                 <input type="date" id="lastfrost" name="lastfrost" value="2023-04-29" min="2023-01-01" max="2023-12-31">
                 <br>
-                <label for="firstfrost">Please enter the average date of first frost in your region.</label>
+                <label for="firstfrost">Please enter the average date of <span class="tooltip-top" style="color:rgb(154, 221, 53)">first frost<span class="tooltip-text">The first frost
+                    date in an area is the earliest date in a year where frost is generally expected. It is often an average and is not guaranteed, but it is very important for plant growth as most
+                    plants can't withstand frost.
+                </span></span>  in your region.</label>
                 <br>
                 <input type="date" id="firstfrost" name="firstfrost"value="2023-10-14"min="2023-01-01" max="2023-12-31">
                 <br>
